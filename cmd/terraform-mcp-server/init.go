@@ -26,9 +26,9 @@ import (
 
 var (
 	rootCmd = &cobra.Command{
-		Use:     "terraform-mcp-server",
-		Short:   "Terraform MCP Server",
-		Long:    `A Terraform MCP server that handles various tools and resources.`,
+		Use:     "opentofu-mcp-server",
+		Short:   "OpenTofu MCP Server",
+		Long:    `An OpenTofu MCP server that handles various tools and resources.`,
 		Version: fmt.Sprintf("Version: %s\nCommit: %s\nBuild Date: %s", version.GetHumanVersion(), version.GitCommit, version.BuildDate),
 		Run:     runDefaultCommand,
 	}
@@ -160,7 +160,7 @@ func serverInit(ctx context.Context, hcServer *server.MCPServer, logger *log.Log
 		errC <- stdioServer.Listen(ctx, in, out)
 	}()
 
-	_, _ = fmt.Fprintf(os.Stderr, "Terraform MCP Server running on stdio\n")
+	_, _ = fmt.Fprintf(os.Stderr, "OpenTofu MCP Server running on stdio\n")
 
 	// Wait for shutdown signal
 	select {

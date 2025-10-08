@@ -1,9 +1,9 @@
 {
-  "name": "terraform",
+  "name": "opentofu",
   "version": "0.3.1",
   "contextFileName": "${extensionPath}${/}instructions${/}example-AGENTS.md",
   "mcpServers": {
-    "terraform": {
+  "opentofu": {
       "command": "docker",
       "args": [
         "run",

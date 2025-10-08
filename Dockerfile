@@ -27,7 +27,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build go mod download
 COPY . ./
 # Build the server
 RUN --mount=type=cache,target=/root/.cache/go-build CGO_ENABLED=0 go build -ldflags="-s -w -X terraform-mcp-server/version.GitCommit=$(shell git rev-parse HEAD) -X terraform-mcp-server/version.BuildDate=$(shell git show --no-show-signature -s --format=%cd --date=format:'%Y-%m-%dT%H:%M:%SZ' HEAD)" \
-    -o terraform-mcp-server ./cmd/terraform-mcp-server
+    -o opentofu-mcp-server ./cmd/terraform-mcp-server
 
 # dev runs the binary from devbuild
 # -----------------------------------
@@ -37,10 +37,10 @@ ARG VERSION="dev"
 # Set the working directory
 WORKDIR /server
 # Copy the binary from the build stage
-COPY --from=devbuild /build/terraform-mcp-server .
+COPY --from=devbuild /build/opentofu-mcp-server .
 COPY --from=certbuild /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 # Command to run the server (mode determined by environment variables or defaults to stdio)
-CMD ["./terraform-mcp-server"]
+CMD ["./opentofu-mcp-server"]
 
 # ===================================
 #
@@ -61,10 +61,10 @@ ARG PRODUCT_NAME=$BIN_NAME
 ARG TARGETOS TARGETARCH
 LABEL version=$PRODUCT_VERSION
 LABEL revision=$PRODUCT_REVISION
-COPY dist/$TARGETOS/$TARGETARCH/$BIN_NAME /bin/terraform-mcp-server
+COPY dist/$TARGETOS/$TARGETARCH/$BIN_NAME /bin/opentofu-mcp-server
 COPY --from=certbuild /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 # Command to run the server (mode determined by environment variables or defaults to stdio)
-CMD ["/bin/terraform-mcp-server"]
+CMD ["/bin/opentofu-mcp-server"]
 
 # ===================================
 #

@@ -334,7 +334,7 @@ func initializeMCPSession(t *testing.T, mcpURL, origin string) string {
 	var initResp InitializeResponse
 	err = json.NewDecoder(resp.Body).Decode(&initResp)
 	require.NoError(t, err)
-	assert.Equal(t, "terraform-mcp-server", initResp.Result.ServerInfo.Name)
+			   assert.Equal(t, "opentofu-mcp-server", initResp.Result.ServerInfo.Name)
 
 	return sessionID
 }

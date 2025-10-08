@@ -1,4 +1,4 @@
-# <img src="public/images/Terraform-LogoMark_onDark.svg" width="30" align="left" style="margin-right: 12px;"/> Terraform MCP Server
+# <img src="public/images/Terraform-LogoMark_onDark.svg" width="30" align="left" style="margin-right: 12px;"/> OpenTofu MCP Server
 
 The Terraform MCP Server is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction)
 server that provides seamless integration with Terraform Registry APIs, enabling advanced
@@ -48,10 +48,10 @@ automation and interaction capabilities for Infrastructure as Code (IaC) develop
 
 ```bash
 # Stdio mode
-terraform-mcp-server stdio [--log-file /path/to/log]
+opentofu-mcp-server stdio [--log-file /path/to/log]
 
 # StreamableHTTP mode
-terraform-mcp-server streamable-http [--transport-port 8080] [--transport-host 127.0.0.1] [--mcp-endpoint /mcp] [--log-file /path/to/log]
+opentofu-mcp-server streamable-http [--transport-port 8080] [--transport-host 127.0.0.1] [--mcp-endpoint /mcp] [--log-file /path/to/log]
 ```
 
 ## Instructions
@@ -105,20 +105,20 @@ More about using MCP server tools in VS Code's [agent mode documentation](https:
     ]
   }
 }
-```
-</td>
-<td>
-
 ```json
-{
-  "mcp": {
     "servers": {
-      "terraform": {
+      "opentofu": {
         "command": "docker",
         "args": [
           "run",
           "-i",
           "--rm",
+          "-e", "TFE_TOKEN=${input:tfe_token}",
+          "-e", "TFE_ADDRESS=${input:tfe_address}",
+          "hashicorp/terraform-mcp-server:0.3.0"
+        ]
+      }
+    },
           "hashicorp/terraform-mcp-server:0.2.3"
         ]
       }

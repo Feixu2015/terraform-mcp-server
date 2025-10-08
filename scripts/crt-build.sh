@@ -49,7 +49,7 @@ function build() {
   : "${KEEP_SYMBOLS:=""}"
 
   # Build our ldflags
-  msg="--> Building terraform-mcp-server revision $revision, built $build_date"
+  msg="--> Building opentofu-mcp-server revision $revision, built $build_date"
 
   # Strip the symbol and dwarf information by default
   if [ -n "$KEEP_SYMBOLS" ]; then
