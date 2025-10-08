@@ -59,24 +59,24 @@ function build() {
   fi
 
   # if building locally with enos - don't need to set version/prerelease/metadata as the default from version_base.go will be used
-  ldflags="${ldflags} -X terraform-mcp-server/version.GitCommit=$revision -X terraform-mcp-server/version.BuildDate=$build_date"
+  ldflags="${ldflags} -X github.com/Feixu2015/opentofu-mcp-server/version.GitCommit=$revision -X github.com/Feixu2015/opentofu-mcp-server/version.BuildDate=$build_date"
 
   if [[ ${BASE_VERSION+x} ]]; then
     msg="${msg}, base version ${BASE_VERSION}"
-    ldflags="${ldflags} -X terraform-mcp-server/version.Version=$BASE_VERSION"
+    ldflags="${ldflags} -X github.com/Feixu2015/opentofu-mcp-server/version.Version=$BASE_VERSION"
   fi
 
   if [[ ${PRERELEASE_VERSION+x} ]]; then
     msg="${msg}, prerelease ${PRERELEASE_VERSION}"
-    ldflags="${ldflags} -X terraform-mcp-server/version.VersionPrerelease=$PRERELEASE_VERSION"
+    ldflags="${ldflags} -X github.com/Feixu2015/opentofu-mcp-server/version.VersionPrerelease=$PRERELEASE_VERSION"
   fi
 
   if [[ ${METADATA_VERSION+x} ]]; then
     msg="${msg}, metadata ${METADATA_VERSION}"
-    ldflags="${ldflags} -X terraform-mcp-server/version.VersionMetadata=$METADATA_VERSION"
+    ldflags="${ldflags} -X github.com/Feixu2015/opentofu-mcp-server/version.VersionMetadata=$METADATA_VERSION"
   fi
 
-  # Build terraform-mcp-server
+  # Build opentofu-mcp-server
   # Always use CGO_ENABLED=0 to ensure a statically linked binary is built
   echo "$msg"
   CGO_ENABLED=0 go build -o "$BIN_PATH" -tags "$GO_TAGS" -ldflags "$ldflags" -trimpath -buildvcs=false ./cmd/terraform-mcp-server

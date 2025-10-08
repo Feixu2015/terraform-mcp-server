@@ -17,7 +17,10 @@ RUN apk add --no-cache ca-certificates
 # devbuild compiles the binary
 # -----------------------------------
 FROM golang:1.24.6-alpine@sha256:c8c5f95d64aa79b6547f3b626eb84b16a7ce18a139e3e9ca19a8c078b85ba80d AS devbuild
+# Accept build args so we don't use make-style $(shell ...) inside the container
 ARG VERSION="dev"
+ARG GIT_COMMIT=""
+ARG BUILD_DATE=""
 # Set the working directory
 WORKDIR /build
 RUN go env -w GOMODCACHE=/root/.cache/go-build
@@ -26,7 +29,7 @@ COPY go.mod go.sum ./
 RUN --mount=type=cache,target=/root/.cache/go-build go mod download
 COPY . ./
 # Build the server
-RUN --mount=type=cache,target=/root/.cache/go-build CGO_ENABLED=0 go build -ldflags="-s -w -X terraform-mcp-server/version.GitCommit=$(shell git rev-parse HEAD) -X terraform-mcp-server/version.BuildDate=$(shell git show --no-show-signature -s --format=%cd --date=format:'%Y-%m-%dT%H:%M:%SZ' HEAD)" \
+RUN --mount=type=cache,target=/root/.cache/go-build CGO_ENABLED=0 go build -ldflags="-s -w -X github.com/Feixu2015/opentofu-mcp-server/version.GitCommit=${GIT_COMMIT} -X github.com/Feixu2015/opentofu-mcp-server/version.BuildDate=${BUILD_DATE}" \
     -o opentofu-mcp-server ./cmd/terraform-mcp-server
 
 # dev runs the binary from devbuild

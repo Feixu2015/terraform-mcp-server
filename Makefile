@@ -1,6 +1,6 @@
 SHELL := /usr/bin/env bash -euo pipefail -c
 
-BINARY_NAME ?= terraform-mcp-server
+BINARY_NAME ?= opentofu-mcp-server
 VERSION ?= $(if $(shell printenv VERSION),$(shell printenv VERSION),dev)
 
 GO=go
@@ -9,7 +9,7 @@ DOCKER=docker
 TARGET_DIR ?= $(CURDIR)/dist
 
 # Build flags
-LDFLAGS=-ldflags="-s -w -X terraform-mcp-server/version.GitCommit=$(shell git rev-parse HEAD) -X terraform-mcp-server/version.BuildDate=$(shell git show --no-show-signature -s --format=%cd --date=format:"%Y-%m-%dT%H:%M:%SZ" HEAD)"
+LDFLAGS=-ldflags="-s -w -X github.com/Feixu2015/opentofu-mcp-server/version.GitCommit=$(shell git rev-parse HEAD) -X github.com/Feixu2015/opentofu-mcp-server/version.BuildDate=$(shell git show --no-show-signature -s --format=%cd --date=format:\"%Y-%m-%dT%H:%M:%SZ\" HEAD)"
 
 .PHONY: all build crt-build test test-e2e test-security clean deps docker-build run-http run-http-secure docker-run-http test-http cleanup-test-containers help
 
