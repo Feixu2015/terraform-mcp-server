@@ -8,9 +8,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/hashicorp/terraform-mcp-server/pkg/client"
-	tfeTools "github.com/hashicorp/terraform-mcp-server/pkg/tools/tfe"
-	"github.com/hashicorp/terraform-mcp-server/pkg/utils"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/client"
+	tfeTools "github.com/Feixu2015/opentofu-mcp-server/pkg/tools/tfe"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/utils"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 	log "github.com/sirupsen/logrus"

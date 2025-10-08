@@ -63,7 +63,7 @@ opentofu-mcp-server streamable-http [--transport-port 8080] [--transport-host 12
         "--rm",
         "-e", "TFE_TOKEN=${input:tfe_token}",
         "-e", "TFE_ADDRESS=${input:tfe_address}",
-        "hashicorp/terraform-mcp-server:0.3.0"
+  "hashicorp/opentofu-mcp-server:0.3.0"
       ]
     },
     "opentofu": {
@@ -74,7 +74,7 @@ opentofu-mcp-server streamable-http [--transport-port 8080] [--transport-host 12
         "--rm",
         "-e", "TFE_TOKEN=${input:tfe_token}",
         "-e", "TFE_ADDRESS=${input:tfe_address}",
-        "hashicorp/terraform-mcp-server:0.3.0"
+  "hashicorp/opentofu-mcp-server:0.3.0"
       ]
     }
   },
@@ -96,7 +96,7 @@ opentofu-mcp-server streamable-http [--transport-port 8080] [--transport-host 12
           "--rm",
           "-e", "TFE_TOKEN=${input:tfe_token}",
           "-e", "TFE_ADDRESS=${input:tfe_address}",
-          "hashicorp/terraform-mcp-server:0.3.0"
+          "hashicorp/opentofu-mcp-server:0.3.0"
         ]
       }
     },
@@ -130,7 +130,7 @@ opentofu-mcp-server streamable-http [--transport-port 8080] [--transport-host 12
           "run",
           "-i",
           "--rm",
-          "hashicorp/terraform-mcp-server:0.2.3"
+          "hashicorp/opentofu-mcp-server:0.2.3"
         ]
       },
       "opentofu": {
@@ -139,7 +139,7 @@ opentofu-mcp-server streamable-http [--transport-port 8080] [--transport-host 12
           "run",
           "-i",
           "--rm",
-          "hashicorp/terraform-mcp-server:0.2.3"
+          "hashicorp/opentofu-mcp-server:0.2.3"
         ]
       }
     }
@@ -169,7 +169,7 @@ Optionally, you can add a similar example (i.e. without the mcp key) to a file c
         "--rm",
         "-e", "TFE_TOKEN=${input:tfe_token}",
         "-e", "TFE_ADDRESS=${input:tfe_address}",
-        "hashicorp/terraform-mcp-server:0.3.0"
+  "hashicorp/opentofu-mcp-server:0.3.0"
       ]
     },
     "opentofu": {
@@ -180,7 +180,7 @@ Optionally, you can add a similar example (i.e. without the mcp key) to a file c
         "--rm",
         "-e", "TFE_TOKEN=${input:tfe_token}",
         "-e", "TFE_ADDRESS=${input:tfe_address}",
-        "hashicorp/terraform-mcp-server:0.3.0"
+  "hashicorp/opentofu-mcp-server:0.3.0"
       ]
     }
   },
@@ -213,7 +213,7 @@ Optionally, you can add a similar example (i.e. without the mcp key) to a file c
         "run",
         "-i",
         "--rm",
-        "hashicorp/terraform-mcp-server:0.2.3"
+  "hashicorp/opentofu-mcp-server:0.2.3"
       ]
     }
   }
@@ -247,7 +247,7 @@ Add this to your Cursor config (`~/.cursor/mcp.json`) or via Settings → Cursor
         "--rm",
         "-e", "TFE_ADDRESS=<<PASTE_TFE_ADDRESS_HERE>>",
         "-e", "TFE_TOKEN=<<PASTE_TFE_TOKEN_HERE>>",
-        "hashicorp/terraform-mcp-server:0.3.0"
+  "hashicorp/opentofu-mcp-server:0.3.0"
       ]
     }
   }
@@ -336,15 +336,15 @@ More about using and adding MCP server tools in Claude Code [user documentation]
 - Local (`stdio`) Transport
 
 ```sh
-claude mcp add terraform -s user -t stdio -- docker run -i --rm hashicorp/terraform-mcp-server
-claude mcp add opentofu -s user -t stdio -- docker run -i --rm hashicorp/terraform-mcp-server
+claude mcp add terraform -s user -t stdio -- docker run -i --rm hashicorp/opentofu-mcp-server
+claude mcp add opentofu -s user -t stdio -- docker run -i --rm hashicorp/opentofu-mcp-server
 ```
 
 - Remote (`streamable-http`) Transport
 
 ```sh
 # Run server (example)
-docker run -p 8080:8080 --rm -e TRANSPORT_MODE=streamable-http -e TRANSPORT_HOST=0.0.0.0 hashicorp/terraform-mcp-server
+docker run -p 8080:8080 --rm -e TRANSPORT_MODE=streamable-http -e TRANSPORT_HOST=0.0.0.0 hashicorp/opentofu-mcp-server
 # Backward-compatible image/command for OpenTofu users (image name unchanged)
 docker run -p 8080:8080 --rm -e TRANSPORT_MODE=streamable-http -e TRANSPORT_HOST=0.0.0.0 hashicorp/terraform-mcp-server
 
@@ -394,7 +394,7 @@ go install github.com/hashicorp/terraform-mcp-server/cmd/terraform-mcp-server@ma
     "servers": {
       "terraform": {
         "type": "stdio",
-        "command": "/path/to/terraform-mcp-server",
+  "command": "/path/to/opentofu-mcp-server",
         "env": {
           "TFE_TOKEN": "<<TFE_TOKEN_HERE>>"
         },
@@ -413,7 +413,7 @@ go install github.com/hashicorp/terraform-mcp-server/cmd/terraform-mcp-server@ma
     "servers": {
       "terraform": {
         "type": "stdio",
-        "command": "/path/to/terraform-mcp-server"
+  "command": "/path/to/opentofu-mcp-server"
       }
     }
   }
@@ -429,8 +429,8 @@ Before using the server, you need to build the Docker image locally:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/hashicorp/terraform-mcp-server.git
-cd terraform-mcp-server
+git clone https://github.com/hashicorp/opentofu-mcp-server.git
+cd opentofu-mcp-server
 ```
 
 2. Build the Docker image:
@@ -442,10 +442,10 @@ make docker-build
 
 ```bash
 # Run in stdio mode
-docker run -i --rm terraform-mcp-server:dev
+docker run -i --rm opentofu-mcp-server:dev
 
 # Run in streamable-http mode
-docker run -p 8080:8080 --rm -e TRANSPORT_MODE=streamable-http -e TRANSPORT_HOST=0.0.0.0 terraform-mcp-server:dev
+docker run -p 8080:8080 --rm -e TRANSPORT_MODE=streamable-http -e TRANSPORT_HOST=0.0.0.0 opentofu-mcp-server:dev
 ```
 
 > **Note:** When running in Docker, you should set `TRANSPORT_HOST=0.0.0.0` to allow connections from outside the container.
@@ -468,7 +468,7 @@ curl http://localhost:8080/health
         "run",
         "-i",
         "--rm",
-        "terraform-mcp-server:dev"
+  "opentofu-mcp-server:dev"
       ]
     }
   }

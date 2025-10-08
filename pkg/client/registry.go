@@ -16,8 +16,8 @@ import (
 
 	"github.com/hashicorp/go-cleanhttp"
 	"github.com/hashicorp/go-retryablehttp"
-	"github.com/hashicorp/terraform-mcp-server/pkg/utils"
-	"github.com/hashicorp/terraform-mcp-server/version"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/utils"
+	"github.com/Feixu2015/opentofu-mcp-server/version"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -78,7 +78,7 @@ func SendRegistryCall(client *http.Client, method string, uri string, logger *lo
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("User-Agent", fmt.Sprintf("terraform-mcp-server/%s", version.GetHumanVersion()))
+	req.Header.Set("User-Agent", fmt.Sprintf("opentofu-mcp-server/%s", version.GetHumanVersion()))
 
 	resp, err := client.Do(req)
 	if err != nil {

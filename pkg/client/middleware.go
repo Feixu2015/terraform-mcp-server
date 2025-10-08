@@ -11,7 +11,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/terraform-mcp-server/pkg/utils"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/utils"
 	log "github.com/sirupsen/logrus"
 )
 

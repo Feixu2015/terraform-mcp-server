@@ -14,7 +14,7 @@
         "TFE_TOKEN",
         "-e",
         "TFE_ADDRESS",
-        "hashicorp/terraform-mcp-server:0.3.1"
+  "hashicorp/opentofu-mcp-server:0.3.1"
       ],
       "env": {
         "TFE_TOKEN": "$TFE_TOKEN",
@@ -31,7 +31,7 @@
         "TFE_TOKEN",
         "-e",
         "TFE_ADDRESS",
-        "hashicorp/terraform-mcp-server:0.3.1"
+  "hashicorp/opentofu-mcp-server:0.3.1"
       ],
       "env": {
         "TFE_TOKEN": "$TFE_TOKEN",

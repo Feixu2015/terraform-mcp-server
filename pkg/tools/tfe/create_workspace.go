@@ -8,15 +8,15 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-tfe"
-	"github.com/hashicorp/terraform-mcp-server/pkg/client"
-	"github.com/hashicorp/terraform-mcp-server/pkg/utils"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/client"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/utils"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 )
 
-const SourceName = "terraform-mcp-server"
+const SourceName = "opentofu-mcp-server"
 
 // CreateWorkspace creates a tool to create a new Terraform workspace.
 func CreateWorkspace(logger *log.Logger) server.ServerTool {

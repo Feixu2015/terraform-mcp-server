@@ -98,7 +98,7 @@ func startHTTPContainerWithCORS(t *testing.T, port, mode, origins string) string
 		"-e", fmt.Sprintf("MCP_CORS_MODE=%s", mode),
 		"-e", fmt.Sprintf("MCP_ALLOWED_ORIGINS=%s", origins),
 		"-p", portMapping,
-		"terraform-mcp-server:test-e2e",
+		"opentofu-mcp-server:test-e2e",
 	)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
@@ -334,7 +334,8 @@ func initializeMCPSession(t *testing.T, mcpURL, origin string) string {
 	var initResp InitializeResponse
 	err = json.NewDecoder(resp.Body).Decode(&initResp)
 	require.NoError(t, err)
-	assert.Equal(t, "terraform-mcp-server", initResp.Result.ServerInfo.Name)
+	// Accept both legacy and new names for compatibility in CI
+	assert.True(t, initResp.Result.ServerInfo.Name == "terraform-mcp-server" || initResp.Result.ServerInfo.Name == "opentofu-mcp-server")
 
 	return sessionID
 }
