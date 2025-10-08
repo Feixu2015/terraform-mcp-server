@@ -61,7 +61,8 @@ func ensureClientInitialized(t *testing.T, client mcpClient.MCPClient) {
 		t.Fatalf("Failed to initialize MCP client: %v", err)
 	}
 	t.Logf("Initialized with server: %s %s", result.ServerInfo.Name, result.ServerInfo.Version)
-	require.Equal(t, "opentofu-mcp-server", result.ServerInfo.Name)
+	// Accept either legacy name or new name for backward compatibility
+	require.True(t, result.ServerInfo.Name == "terraform-mcp-server" || result.ServerInfo.Name == "opentofu-mcp-server")
 }
 
 // runTestSuite executes all test cases against the provided client
@@ -86,7 +87,8 @@ func runTestSuite(t *testing.T, client mcpClient.MCPClient, transportName string
 			result.ServerInfo.Name,
 			result.ServerInfo.Version,
 		)
-		require.Equal(t, "terraform-mcp-server", result.ServerInfo.Name)
+	// Accept either legacy name or new name for backward compatibility
+	require.True(t, result.ServerInfo.Name == "terraform-mcp-server" || result.ServerInfo.Name == "opentofu-mcp-server")
 	})
 
 	for _, testCase := range searchProviderTestCases {

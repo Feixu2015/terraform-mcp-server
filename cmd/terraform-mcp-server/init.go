@@ -27,6 +27,7 @@ import (
 var (
 	rootCmd = &cobra.Command{
 		Use:     "opentofu-mcp-server",
+		Aliases: []string{"terraform-mcp-server"},
 		Short:   "OpenTofu MCP Server",
 		Long:    `An OpenTofu MCP server that handles various tools and resources.`,
 		Version: fmt.Sprintf("Version: %s\nCommit: %s\nBuild Date: %s", version.GetHumanVersion(), version.GitCommit, version.BuildDate),
@@ -235,7 +236,7 @@ func streamableHTTPServerInit(ctx context.Context, hcServer *server.MCPServer, l
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		response := fmt.Sprintf(`{"status":"ok","service":"terraform-mcp-server","transport":"streamable-http","endpoint":"%s"}`, endpointPath)
+	response := fmt.Sprintf(`{"status":"ok","service":"opentofu-mcp-server","transport":"streamable-http","endpoint":"%s"}`, endpointPath)
 		w.Write([]byte(response))
 	})
 

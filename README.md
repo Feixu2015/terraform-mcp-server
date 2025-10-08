@@ -1,19 +1,19 @@
 # <img src="public/images/Terraform-LogoMark_onDark.svg" width="30" align="left" style="margin-right: 12px;"/> OpenTofu MCP Server
 
-The Terraform MCP Server is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction)
-server that provides seamless integration with Terraform Registry APIs, enabling advanced
+The OpenTofu MCP Server is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction)
+server that provides seamless integration with registry APIs, enabling advanced
 automation and interaction capabilities for Infrastructure as Code (IaC) development.
 
 ## Features
 
 - **Dual Transport Support**: Both Stdio and StreamableHTTP transports with configurable endpoints
-- **Terraform Registry Integration**: Direct integration with public Terraform Registry APIs for providers, modules, and policies
+- **Registry Integration**: Direct integration with public registry APIs for providers, modules, and policies
 - **HCP Terraform & Terraform Enterprise Support**: Full workspace management, organization/project listing, and private registry access
 - **Workspace Operations**: Create, update, delete workspaces with support for variables, tags, and run management
 
 > **Security Note:** At this stage, the MCP server is intended for local use only. If using the StreamableHTTP transport, always configure the MCP_ALLOWED_ORIGINS environment variable to restrict access to trusted origins only. This helps prevent DNS rebinding attacks and other cross-origin vulnerabilities.
 
-> **Security Note:** Depending on the query, the MCP server may expose certain Terraform data to the MCP client and LLM. Do not use the MCP server with untrusted MCP clients or LLMs.
+> **Security Note:** Depending on the query, the MCP server may expose certain registry data to the MCP client and LLM. Do not use the MCP server with untrusted MCP clients or LLMs.
 
 > **Legal Note:** Your use of a third party MCP Client/LLM is subject solely to the terms of use for such MCP/LLM, and IBM is not responsible for the performance of such third party tools. IBM expressly disclaims any and all warranties and liability for third party MCP Clients/LLMs, and may not be able to provide support to resolve issues which are caused by the third party tools. 
 
@@ -56,7 +56,7 @@ opentofu-mcp-server streamable-http [--transport-port 8080] [--transport-host 12
 
 ## Instructions
 
-Default instructions for the MCP server is located in `cmd/terraform-mcp-server/instructions.md`, if those do not seem appropriate for your organization's Terraform practices or if the MCP server is producing inaccurate responses, please replace them with your own instructions and rebuild the container or binary. An example of such instruction is located in `instructions/example-mcp-instructions.md`
+Default instructions for the MCP server is located in `cmd/terraform-mcp-server/instructions.md`, if those do not seem appropriate for your organization's practices or if the MCP server is producing inaccurate responses, please replace them with your own instructions and rebuild the container or binary. An example of such instruction is located in `instructions/example-mcp-instructions.md`
 
 `AGENTS.md` essentially behaves as READMEs for coding agents: a dedicated, predictable place to provide the context and instructions to help AI coding agents work on your project. One `AGENTS.md` file works with different coding agents. An example of such instruction is located in `instructions/example-AGENTS.md`, in order to use it commit a file name `AGENTS.md` to the directory where your Terraform configurations reside.
 
@@ -77,7 +77,7 @@ More about using MCP server tools in VS Code's [agent mode documentation](https:
 {
   "mcp": {
     "servers": {
-      "terraform": {
+  "opentofu": {
         "command": "docker",
         "args": [
           "run",
@@ -105,20 +105,20 @@ More about using MCP server tools in VS Code's [agent mode documentation](https:
     ]
   }
 }
+```
+</td>
+<td>
+
 ```json
+{
+  "mcp": {
     "servers": {
-      "opentofu": {
+      "terraform": {
         "command": "docker",
         "args": [
           "run",
           "-i",
           "--rm",
-          "-e", "TFE_TOKEN=${input:tfe_token}",
-          "-e", "TFE_ADDRESS=${input:tfe_address}",
-          "hashicorp/terraform-mcp-server:0.3.0"
-        ]
-      }
-    },
           "hashicorp/terraform-mcp-server:0.2.3"
         ]
       }
@@ -306,12 +306,15 @@ More about using and adding MCP server tools in Claude Code [user documentation]
 
 ```sh
 claude mcp add terraform -s user -t stdio -- docker run -i --rm hashicorp/terraform-mcp-server
+claude mcp add opentofu -s user -t stdio -- docker run -i --rm hashicorp/terraform-mcp-server
 ```
 
 - Remote (`streamable-http`) Transport
 
 ```sh
 # Run server (example)
+docker run -p 8080:8080 --rm -e TRANSPORT_MODE=streamable-http -e TRANSPORT_HOST=0.0.0.0 hashicorp/terraform-mcp-server
+# Backward-compatible image/command for OpenTofu users (image name unchanged)
 docker run -p 8080:8080 --rm -e TRANSPORT_MODE=streamable-http -e TRANSPORT_HOST=0.0.0.0 hashicorp/terraform-mcp-server
 
 # Add to Claude Code

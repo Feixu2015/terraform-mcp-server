@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MPL-2.0
 
 
-# The crt-build script is used to detemine build metadata and create terraform-mcp-server builds.
+# The crt-build script is used to detemine build metadata and create opentofu-mcp-server builds.
 # We use it in build.yml for building release artifacts with CRT in the Go Build step. 
 
 set -euo pipefail
@@ -34,7 +34,7 @@ function repo_root() {
   git rev-parse --show-toplevel
 }
 
-# Build terraform-mcp-server
+# Build opentofu-mcp-server
 function build() {
   local revision
   local build_date

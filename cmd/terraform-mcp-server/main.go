@@ -72,7 +72,7 @@ func NewServer(version string, logger *log.Logger, opts ...server.ServerOption) 
 
 	// Create a new MCP server
 	s := server.NewMCPServer(
-		"terraform-mcp-server",
+		"opentofu-mcp-server",
 		version,
 		opts...,
 	)

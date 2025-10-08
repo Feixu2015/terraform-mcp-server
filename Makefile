@@ -1,6 +1,6 @@
 SHELL := /usr/bin/env bash -euo pipefail -c
 
-BINARY_NAME ?= opentofu-mcp-server
+BINARY_NAME ?= terraform-mcp-server
 VERSION ?= $(if $(shell printenv VERSION),$(shell printenv VERSION),dev)
 
 GO=go
