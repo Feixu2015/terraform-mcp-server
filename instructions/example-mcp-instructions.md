@@ -1,9 +1,10 @@
+
 >Note: In order to implement these custom instructions into the MCP server copy them into `cmd/terraform-mcp-server/instructions.md` and rebuild the MCP binary or docker image to use it.
 
-# Terraform MCP Server Usage Instructions
+# OpenTofu / Terraform MCP Server Usage Instructions
 
 ## Overview
-The Terraform MCP (Model Context Protocol) server is a specialized tool that enables LLMs to generate high-quality Terraform code and manage Terraform workflows through API integrations with HCP Terraform and Terraform Enterprise.
+The MCP (Model Context Protocol) server is a specialized tool that enables LLMs to generate high-quality infrastructure-as-code (IaC) and manage workflows through API integrations with HCP Terraform and Terraform Enterprise. This guidance is applicable to both Terraform and OpenTofu users; specific command examples use Terraform by default but OpenTofu users should substitute the equivalent OpenTofu commands where appropriate.
 
 ## Core Capabilities
 

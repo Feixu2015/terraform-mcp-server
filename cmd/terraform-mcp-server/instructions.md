@@ -1,14 +1,14 @@
-# Terraform MCP Server Tool Hints
+# OpenTofu MCP Server Tool Hints
 
-The Terraform MCP server provides tools for generating better Terraform code through registry integration and automating workflows via HCP Terraform/Enterprise APIs.
+The OpenTofu MCP server provides tools for generating better infrastructure-as-code through registry integration and automating workflows via HCP Terraform/Enterprise APIs. This document uses "Terraform" where referring specifically to Terraform commands or ecosystem features; OpenTofu users should apply equivalent OpenTofu commands where applicable.
 
 ## Tool Usage Guidelines
 
-**BEFORE generating any Terraform code**: Query registries for latest provider/module versions and styling guidelines. When enterprise tools are enabled AND a Terraform token is provided, search private registries first, then fall back to public.
+**BEFORE generating any code**: Query registries for latest provider/module versions and styling guidelines. When enterprise tools are enabled AND a Terraform/OpenTofu token is provided, search private registries first, then fall back to public.
 
 **Provider Consistency**: All modules in a project must use compatible provider versions. Verify with get_provider_details before generating code.
 
-**Validation Flow**: Run terraform validate immediately after generation, then terraform plan only if validation passes. Use terraform fmt to format code as needed.
+**Validation Flow**: Run the appropriate validation command for your IaC tool (for Terraform: `terraform validate`; for OpenTofu: use OpenTofu's validation workflow) immediately after generation, then run plan/apply flows only if validation passes. Use `terraform fmt` or equivalent OpenTofu formatting tools as needed.
 
 **User Confirmation Required**: ALWAYS get explicit yes/no confirmation before: `create_run`, `apply_run`, `discard_run`, `cancel_run`.
 

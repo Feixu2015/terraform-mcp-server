@@ -1,11 +1,11 @@
 ---
 applyTo: "**/*.{tf,hcl}"
-description: "HashiCorp style guidelines for writing Terraform code"
+description: "HashiCorp style guidelines for writing Terraform or OpenTofu code"
 ---
 
-# Terraform Code Style Guidelines
+# Terraform / OpenTofu Code Style Guidelines
 
-This project follows HashiCorp's official Terraform style guide for consistent, maintainable infrastructure-as-code.
+This project follows HashiCorp's official Terraform style guide and provides guidance for OpenTofu users where applicable to ensure consistent, maintainable infrastructure-as-code.
 
 ## Project Context
 
