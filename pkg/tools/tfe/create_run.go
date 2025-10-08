@@ -62,7 +62,7 @@ func createRunSafeHandler(ctx context.Context, request mcp.CallToolRequest, logg
 	workspaceName = strings.TrimSpace(workspaceName)
 
 	runType := request.GetString("run_type", "plan_and_apply")
-	message := request.GetString("message", "Triggered via Terraform MCP Server")
+	message := request.GetString("message", "Triggered via OpenTofu/Triggered via Terraform MCP Server")
 
 	tfeClient, err := client.GetTfeClientFromContext(ctx, logger)
 	if err != nil {
