@@ -365,7 +365,7 @@ TFE_TOKEN=your_tfe_token_here
 Install the extension & run Gemini
 
 ```
-gemini extensions install https://github.com/hashicorp/terraform-mcp-server
+gemini extensions install https://github.com/hashicorp/opentofu-mcp-server
 gemini
 ```
 
@@ -374,13 +374,13 @@ gemini
 Use the latest release version:
 
 ```console
-go install github.com/hashicorp/terraform-mcp-server/cmd/terraform-mcp-server@latest
+go install github.com/hashicorp/opentofu-mcp-server/cmd/opentofu-mcp-server@latest
 ```
 
 Use the main branch:
 
 ```console
-go install github.com/hashicorp/terraform-mcp-server/cmd/terraform-mcp-server@main
+go install github.com/hashicorp/opentofu-mcp-server/cmd/opentofu-mcp-server@main
 ```
 
 <table>

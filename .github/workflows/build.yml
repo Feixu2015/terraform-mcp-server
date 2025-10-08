@@ -31,7 +31,7 @@ on:
       - ready_for_review
 
 env:
-  PKG_NAME: "terraform-mcp-server"
+  PKG_NAME: "opentofu-mcp-server"
 
 permissions:
   contents: read
