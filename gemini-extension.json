@@ -1,9 +1,27 @@
 {
-  "name": "terraform",
+  "name": "opentofu",
+  "legacyName": "terraform",
   "version": "0.3.1",
   "contextFileName": "${extensionPath}${/}instructions${/}example-AGENTS.md",
   "mcpServers": {
     "terraform": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "TFE_TOKEN",
+        "-e",
+        "TFE_ADDRESS",
+        "hashicorp/terraform-mcp-server:0.3.1"
+      ],
+      "env": {
+        "TFE_TOKEN": "$TFE_TOKEN",
+        "TFE_ADDRESS": "$TFE_ADDRESS"
+      }
+    },
+    "opentofu": {
       "command": "docker",
       "args": [
         "run",

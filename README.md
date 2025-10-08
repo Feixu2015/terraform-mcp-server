@@ -52,21 +52,32 @@ opentofu-mcp-server stdio [--log-file /path/to/log]
 
 # StreamableHTTP mode
 opentofu-mcp-server streamable-http [--transport-port 8080] [--transport-host 127.0.0.1] [--mcp-endpoint /mcp] [--log-file /path/to/log]
-```
-
-## Instructions
-
-Default instructions for the MCP server is located in `cmd/terraform-mcp-server/instructions.md`, if those do not seem appropriate for your organization's practices or if the MCP server is producing inaccurate responses, please replace them with your own instructions and rebuild the container or binary. An example of such instruction is located in `instructions/example-mcp-instructions.md`
-
-`AGENTS.md` essentially behaves as READMEs for coding agents: a dedicated, predictable place to provide the context and instructions to help AI coding agents work on your project. One `AGENTS.md` file works with different coding agents. An example of such instruction is located in `instructions/example-AGENTS.md`, in order to use it commit a file name `AGENTS.md` to the directory where your Terraform configurations reside.
-
-## Installation
-
-### Usage with Visual Studio Code
-
-Add the following JSON block to your User Settings (JSON) file in VS Code. You can do this by pressing `Ctrl + Shift + P` and typing `Preferences: Open User Settings (JSON)`. 
-
-More about using MCP server tools in VS Code's [agent mode documentation](https://code.visualstudio.com/docs/copilot/chat/mcp-servers).
+```json
+{
+  "servers": {
+    "terraform": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e", "TFE_TOKEN=${input:tfe_token}",
+        "-e", "TFE_ADDRESS=${input:tfe_address}",
+        "hashicorp/terraform-mcp-server:0.3.0"
+      ]
+    },
+    "opentofu": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e", "TFE_TOKEN=${input:tfe_token}",
+        "-e", "TFE_ADDRESS=${input:tfe_address}",
+        "hashicorp/terraform-mcp-server:0.3.0"
+      ]
+    }
+  },
 
 <table>
 <tr><th>Version 0.3.0+ or greater</th><th>Version 0.2.3 or lower</th></tr>
@@ -121,6 +132,15 @@ More about using MCP server tools in VS Code's [agent mode documentation](https:
           "--rm",
           "hashicorp/terraform-mcp-server:0.2.3"
         ]
+      },
+      "opentofu": {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "hashicorp/terraform-mcp-server:0.2.3"
+        ]
       }
     }
   }
@@ -142,6 +162,17 @@ Optionally, you can add a similar example (i.e. without the mcp key) to a file c
 {
   "servers": {
     "terraform": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e", "TFE_TOKEN=${input:tfe_token}",
+        "-e", "TFE_ADDRESS=${input:tfe_address}",
+        "hashicorp/terraform-mcp-server:0.3.0"
+      ]
+    },
+    "opentofu": {
       "command": "docker",
       "args": [
         "run",
