@@ -4,7 +4,7 @@
 package tools
 
 import (
-	registryTools "github.com/hashicorp/terraform-mcp-server/pkg/tools/registry"
+	registryTools "github.com/Feixu2015/opentofu-mcp-server/pkg/tools/registry"
 	"github.com/mark3labs/mcp-go/server"
 	log "github.com/sirupsen/logrus"
 )

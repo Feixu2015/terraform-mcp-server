@@ -1,4 +1,4 @@
-module github.com/hashicorp/terraform-mcp-server
+module github.com/Feixu2015/opentofu-mcp-server
 
 go 1.24.0
 

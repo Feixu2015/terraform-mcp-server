@@ -13,8 +13,8 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/hashicorp/terraform-mcp-server/pkg/client"
-	"github.com/hashicorp/terraform-mcp-server/version"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/client"
+	"github.com/Feixu2015/opentofu-mcp-server/version"
 
 	"github.com/mark3labs/mcp-go/server"
 	log "github.com/sirupsen/logrus"

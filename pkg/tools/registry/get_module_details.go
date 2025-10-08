@@ -10,8 +10,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/hashicorp/terraform-mcp-server/pkg/client"
-	"github.com/hashicorp/terraform-mcp-server/pkg/utils"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/client"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/utils"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/mark3labs/mcp-go/mcp"

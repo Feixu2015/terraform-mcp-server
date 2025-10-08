@@ -9,8 +9,8 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-tfe"
-	"github.com/hashicorp/terraform-mcp-server/pkg/client"
-	"github.com/hashicorp/terraform-mcp-server/pkg/utils"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/client"
+	"github.com/Feixu2015/opentofu-mcp-server/pkg/utils"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 	log "github.com/sirupsen/logrus"
